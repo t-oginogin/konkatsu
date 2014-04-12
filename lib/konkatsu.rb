@@ -46,6 +46,8 @@ class Konkatsu
 
 
   def execute( pattern )
+    initialize
+
     # 希望リスト解析
     @lovers_pattern = LoversPattern.input_parse pattern
 
@@ -81,8 +83,7 @@ class Konkatsu
 end
 
 # 希望リスト
-=begin
-pattern = <<LOVERS
+pattern1 = <<LOVERS1
 A:c,b,a
 B:a,b,d
 C:a,c,b
@@ -91,9 +92,9 @@ a:A,C,D
 b:D,A,B
 c:B,A,C
 d:D,C,A
-LOVERS
-=end
-pattern = <<LOVERS
+LOVERS1
+
+pattern2 = <<LOVERS2
 A:c,a,b
 B:c,f,a
 C:f,c,b
@@ -106,9 +107,14 @@ c:D,A,C
 d:A,A,B
 e:C,A,E
 f:D,B,A
-LOVERS
+LOVERS2
 
 konkatsu = Konkatsu.new
-lovers = konkatsu.execute pattern
+#1st
+puts "1st"
+lovers = konkatsu.execute pattern1
 lovers.each {|lover| puts lover}
-
+#2nd
+puts "\n2st"
+lovers = konkatsu.execute pattern2
+lovers.each {|lover| puts lover}
