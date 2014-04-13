@@ -45,7 +45,7 @@ describe Konkatsu do
 
         konkatsu = Konkatsu.new
         lovers = konkatsu.execute pattern
-        expect(lovers.map {|l| l.to_s}.join).to eq("A-cB-fC-bF-a")
+        expect(lovers.map {|l| l.to_s}.join).to eq("A-aB-fC-b")
 
       end
     end
