@@ -53,7 +53,10 @@ class Konkatsu
     all_pairs.each do |pair|
       unless pair.man?
         men = search(pair)
-        men.each {|man| man.point += pair.point; self.love_pairs << man}
+        men.each do |man|
+          man.point += pair.point
+          self.love_pairs << man
+        end
       end
     end
   end
