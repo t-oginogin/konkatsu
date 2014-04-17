@@ -61,9 +61,7 @@ class Konkatsu
 
   # ポイントの若い順に並び替え
   def sort_by_point
-    sorted_pairs = []
-    love_pairs.each {|pair| sorted_pairs << pair}
-    self.love_pairs = sorted_pairs.sort {|a, b| a.point <=> b.point}
+    self.love_pairs = love_pairs.sort {|a, b| a.point <=> b.point}
   end
 
   # 希望順にペアを確定し、すでにペアになった人を除外
