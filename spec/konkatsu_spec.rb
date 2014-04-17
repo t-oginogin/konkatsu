@@ -4,7 +4,6 @@ describe Konkatsu do
   describe 'execute' do
     context 'pattern1' do
       it 'returns pairs' do
-
         # 希望リスト
         pattern = <<-LOVERS
         A:c,b,a
@@ -19,14 +18,11 @@ describe Konkatsu do
 
         konkatsu = Konkatsu.new
         lovers = konkatsu.execute pattern
-        expect(lovers.map {|l| l.to_s}.join).to eq("A-cB-bC-aD-d")
-
+        expect(lovers.join).to eq("A-cB-bC-aD-d")
       end
     end
-
     context 'pattern2' do
       it 'returns pairs' do
-
         # 希望リスト
         pattern = <<-LOVERS
         A:c,a,b
@@ -45,8 +41,7 @@ describe Konkatsu do
 
         konkatsu = Konkatsu.new
         lovers = konkatsu.execute pattern
-        expect(lovers.map {|l| l.to_s}.join).to eq("A-aB-fC-b")
-
+        expect(lovers.join).to eq("A-aB-fC-b")
       end
     end
   end
