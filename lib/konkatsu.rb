@@ -56,13 +56,11 @@ class Konkatsu
   # 女性の希望ポイントを男性の希望ポイントにマージする
   # 女性から希望のあった男性のみ結果用に格納
   def merge_point
-    all_pairs.each do |person|
-      if person.woman?
-        men = search_men_for_this_woman(person)
-        men.each do |man|
-          man.point += person.point
-          self.love_pairs << man
-        end
+    all_pairs.select(&:woman?).each do |person|
+      men = search_men_for_this_woman(person)
+      men.each do |man|
+        man.point += person.point
+        self.love_pairs << man
       end
     end
   end
