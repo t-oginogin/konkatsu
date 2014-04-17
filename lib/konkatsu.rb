@@ -11,7 +11,7 @@ class Pair
   end
 
   def man?
-    from =~ /[A-Z]+/
+    from =~ /[A-Z]/
   end
 
   def love_each_other?(other_pair)
