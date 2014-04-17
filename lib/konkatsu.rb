@@ -68,9 +68,7 @@ class Konkatsu
     coupled_names = []
     coupled_pairs = []
     love_pairs.each do |pair|
-      is_coupled = false
-      coupled_names.each {|name| is_coupled = true if pair.from == name || pair.to == name}
-      next if is_coupled
+      next if coupled_names.any? {|name| pair.from == name || pair.to == name }
       coupled_names << pair.from
       coupled_names << pair.to
       coupled_pairs << pair 
