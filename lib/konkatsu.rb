@@ -70,7 +70,7 @@ class Konkatsu
     @love_pairs.sort {|a, b| a.from <=> b.from}
   end
   
-  def self.execute( pattern )
+  def self.execute(pattern)
     konkatsu = self.new pattern
     konkatsu.merge_point
     konkatsu.merged_pairs
