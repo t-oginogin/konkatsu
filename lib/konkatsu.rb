@@ -17,6 +17,10 @@ class Pair
   def love_each_other?(other_pair)
     from == other_pair.to && to == other_pair.from
   end
+
+  def <=>(other)
+    point <=> other.point
+  end
 end
 
 class PairsPattern
@@ -59,11 +63,6 @@ class Konkatsu
     end
   end
 
-  # ポイントの若い順に並び替え
-  def sort_by_point
-    self.love_pairs = love_pairs.sort {|a, b| a.point <=> b.point}
-  end
-
   # 希望順にペアを確定し、すでにペアになった人を除外
   def except_couple
     coupled_names = []
@@ -81,7 +80,8 @@ class Konkatsu
 
   # 女性から希望されてポイント加算された男性のみ抽出
   def merged_pairs
-    sort_by_point
+    # ポイントの若い順に並び替え
+    love_pairs.sort!
     except_couple
 
     # 名前順に並び替え
