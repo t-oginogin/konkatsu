@@ -38,11 +38,9 @@ class Konkatsu
   end
 
   def search(from, to)
-    lists = []
-    all_pairs.each do |pair|
-      lists << pair.dup if pair.from == from && pair.to == to
-    end
-    lists
+    all_pairs.map do |pair|
+      pair.dup if pair.from == from && pair.to == to
+    end.compact
   end
 
   # 女性の希望ポイントを男性の希望ポイントにマージする
