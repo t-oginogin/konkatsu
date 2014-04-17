@@ -41,20 +41,20 @@ class Konkatsu
     @love_pairs = []
   end
 
-  def search(other_pair)
-    all_pairs.map do |pair|
-      pair.dup if pair.love_each_other?(other_pair)
+  def search_men_for_this_woman(woman)
+    all_pairs.map do |man|
+      man.dup if man.love_each_other?(woman)
     end.compact
   end
 
   # 女性の希望ポイントを男性の希望ポイントにマージする
   # 女性から希望のあった男性のみ結果用に格納
   def merge_point
-    all_pairs.each do |pair|
-      if pair.woman?
-        men = search(pair)
+    all_pairs.each do |person|
+      if person.woman?
+        men = search_men_for_this_woman(person)
         men.each do |man|
-          man.point += pair.point
+          man.point += person.point
           self.love_pairs << man
         end
       end
