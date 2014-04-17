@@ -10,8 +10,8 @@ class Pair
     "#{from}-#{to}"
   end
 
-  def man?
-    from =~ /[A-Z]/
+  def woman?
+    from =~ /[a-z]/
   end
 
   def love_each_other?(other_pair)
@@ -51,7 +51,7 @@ class Konkatsu
   # 女性から希望のあった男性のみ結果用に格納
   def merge_point
     all_pairs.each do |pair|
-      unless pair.man?
+      if pair.woman?
         men = search(pair)
         men.each do |man|
           man.point += pair.point
