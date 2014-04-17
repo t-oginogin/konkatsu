@@ -85,7 +85,7 @@ class Konkatsu
   # 希望順にペアを確定し、すでにペアになった人を除外
   def except_couple
     coupled_pairs = []
-    @love_pairs = @love_pairs.select do |pair|
+    @love_pairs.select! do |pair|
       if coupled_pairs.none? {|coupled_pair| pair.person_exists?(coupled_pair) }
         coupled_pairs << pair
       end
