@@ -42,9 +42,7 @@ class Konkatsu
   end
 
   def search_men_for_this_woman(woman)
-    all_pairs.map do |man|
-      man.dup if man.love_each_other?(woman)
-    end.compact
+    all_pairs.select {|man| man.love_each_other?(woman) }
   end
 
   # 女性の希望ポイントを男性の希望ポイントにマージする
