@@ -50,7 +50,7 @@ class Konkatsu
 
   # 女性の希望ポイントを男性の希望ポイントにマージする
   # 女性から希望のあった男性のみ結果用に格納
-  def merge_point
+  def merge_point!
     @all_pairs.select(&:woman?).each do |person|
       men = search_men_for_this_woman(person)
       men.each do |man|
@@ -61,10 +61,10 @@ class Konkatsu
   end
 
   # 女性から希望されてポイント加算された男性のみ抽出
-  def merged_pairs
+  def merged_pairs!
     # ポイントの若い順に並び替え
     @love_pairs.sort!
-    except_couple
+    except_couple!
 
     # 名前順に並び替え
     @love_pairs.sort {|a, b| a.from <=> b.from}
@@ -72,8 +72,8 @@ class Konkatsu
   
   def self.execute(pattern)
     konkatsu = self.new pattern
-    konkatsu.merge_point
-    konkatsu.merged_pairs
+    konkatsu.merge_point!
+    konkatsu.merged_pairs!
   end
 
   private
@@ -83,7 +83,7 @@ class Konkatsu
   end
 
   # 希望順にペアを確定し、すでにペアになった人を除外
-  def except_couple
+  def except_couple!
     coupled_pairs = []
     @love_pairs.select! do |pair|
       if coupled_pairs.none? {|coupled_pair| pair.person_exists?(coupled_pair) }
