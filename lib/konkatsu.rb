@@ -21,6 +21,10 @@ class Pair
   def <=>(other)
     point <=> other.point
   end
+
+  def person_exists?(other_pair)
+    from == other_pair.from or to == other_pair.to
+  end
 end
 
 class PairsPattern
@@ -65,10 +69,10 @@ class Konkatsu
 
   # 希望順にペアを確定し、すでにペアになった人を除外
   def except_couple
-    coupled_names = []
+    coupled_pairs = []
     self.love_pairs = love_pairs.select do |pair|
-      if coupled_names.none? {|name| pair.from == name || pair.to == name }
-        coupled_names += [pair.from, pair.to]
+      if coupled_pairs.none? {|coupled_pair| pair.person_exists?(coupled_pair) }
+        coupled_pairs << pair
       end
     end
   end
