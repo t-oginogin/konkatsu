@@ -13,6 +13,10 @@ class Pair
   def man?
     from =~ /[A-Z]+/
   end
+
+  def love_each_other?(other_pair)
+    from == other_pair.to && to == other_pair.from
+  end
 end
 
 class PairsPattern
@@ -37,9 +41,9 @@ class Konkatsu
     @love_pairs = []
   end
 
-  def search(from, to)
+  def search(other_pair)
     all_pairs.map do |pair|
-      pair.dup if pair.from == from && pair.to == to
+      pair.dup if pair.love_each_other?(other_pair)
     end.compact
   end
 
@@ -48,7 +52,7 @@ class Konkatsu
   def merge_point
     all_pairs.each do |pair|
       unless pair.man?
-        men = search(pair.to, pair.from)
+        men = search(pair)
         men.each {|man| man.point += pair.point; self.love_pairs << man}
       end
     end
