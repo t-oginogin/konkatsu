@@ -44,8 +44,8 @@ end
 class Konkatsu
   attr_accessor :all_pairs, :love_pairs
 
-  def initialize
-    @all_pairs = []
+  def initialize(pattern)
+    @all_pairs = PairsPattern.parse pattern
     @love_pairs = []
   end
 
@@ -85,10 +85,9 @@ class Konkatsu
     love_pairs.sort {|a, b| a.from <=> b.from}
   end
   
-  def execute( pattern )
-    initialize
-    self.all_pairs = PairsPattern.parse pattern
-    merge_point
-    merged_pairs
+  def self.execute( pattern )
+    konkatsu = self.new pattern
+    konkatsu.merge_point
+    konkatsu.merged_pairs
   end
 end

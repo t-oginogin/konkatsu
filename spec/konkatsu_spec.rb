@@ -16,8 +16,7 @@ describe Konkatsu do
         d:D,C,A
         LOVERS
 
-        konkatsu = Konkatsu.new
-        lovers = konkatsu.execute pattern
+        lovers = Konkatsu.execute pattern
         expect(lovers.join).to eq("A-cB-bC-aD-d")
       end
     end
@@ -39,8 +38,7 @@ describe Konkatsu do
         f:D,B,A
         LOVERS
 
-        konkatsu = Konkatsu.new
-        lovers = konkatsu.execute pattern
+        lovers = Konkatsu.execute pattern
         expect(lovers.join).to eq("A-aB-fC-b")
       end
     end
