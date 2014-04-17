@@ -66,13 +66,11 @@ class Konkatsu
   # 希望順にペアを確定し、すでにペアになった人を除外
   def except_couple
     coupled_names = []
-    coupled_pairs = []
-    love_pairs.each do |pair|
-      next if coupled_names.any? {|name| pair.from == name || pair.to == name }
-      coupled_names += [pair.from, pair.to]
-      coupled_pairs << pair
+    self.love_pairs = love_pairs.select do |pair|
+      if coupled_names.none? {|name| pair.from == name || pair.to == name }
+        coupled_names += [pair.from, pair.to]
+      end
     end
-    self.love_pairs = coupled_pairs
   end
 
   # 女性から希望されてポイント加算された男性のみ抽出
