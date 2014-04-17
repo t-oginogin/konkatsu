@@ -28,23 +28,9 @@ class Pair
   end
 end
 
-class PairsPattern
-
-  # 入力パターン解析
-  def self.parse(input_string)
-    input_string.each_line.map do |pair_list|
-      /(?<name>\w):(?<others>.+)/ =~ pair_list
-      (others || "").split(",").each_with_index.map do |pair, i|
-        Pair.new(name, pair, i)
-      end
-    end.flatten
-  end
-
-end
-
 class Konkatsu
   def initialize(pattern)
-    @all_pairs = PairsPattern.parse pattern
+    @all_pairs = parse(pattern).freeze
     @love_pairs = []
   end
 
@@ -90,5 +76,14 @@ class Konkatsu
         coupled_pairs << pair
       end
     end
+  end
+
+  def parse(input_string)
+    input_string.each_line.map do |pair_list|
+      /(?<name>\w):(?<others>.+)/ =~ pair_list
+      (others || "").split(",").each_with_index.map do |pair, i|
+        Pair.new(name, pair, i)
+      end
+    end.flatten
   end
 end
