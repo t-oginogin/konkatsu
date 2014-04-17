@@ -19,12 +19,12 @@ class PairsPattern
 
   # 入力パターン解析
   def self.parse(input_string)
-    input_string.each_line.each_with_object([]) do |pair_list, pairs|
+    input_string.each_line.map do |pair_list|
       /(?<name>\w):(?<others>.+)/ =~ pair_list
-      (others || "").split(",").each_with_index do |pair, i|
-        pairs << Pair.new(name, pair, i+1)
+      (others || "").split(",").each_with_index.map do |pair, i|
+        Pair.new(name, pair, i+1)
       end
-    end
+    end.flatten
   end
 
 end
